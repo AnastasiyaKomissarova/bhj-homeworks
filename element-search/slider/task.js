@@ -1,25 +1,26 @@
 const switchLeft = document.querySelector(".slider__arrow_prev");
 const switchRight = document.querySelector(".slider__arrow_next");
-const sliders = document.querySelectorAll('.slider__item');
-let currentSlide = 0;
+const sliders = Array.from(document.querySelectorAll('.slider__item'));
 
 
 switchRight.onclick = function () {
-  sliders[currentSlide].className = 'slider__item';
-  if (currentSlide < sliders.length - 1) {
-    currentSlide++;
+  let active = sliders.findIndex((i) => i.className.includes("slider__item_active"));
+  sliders[active].className = 'slider__item';
+  if (active < sliders.length - 1) {
+    active++;
   } else {
-    currentSlide = 0;
+    active = 0;
   }
-  sliders[currentSlide].className = 'slider__item slider__item_active';
+  sliders[active].className = 'slider__item slider__item_active';
 };
 
 switchLeft.onclick = function () {
-  sliders[currentSlide].className = 'slider__item';
-  if (currentSlide > 0) {
-    currentSlide--;
+  let active = sliders.findIndex((i) => i.className.includes("slider__item_active"));
+  sliders[active].className = 'slider__item';
+  if (active > 0) {
+    active--;
   } else {
-    currentSlide = sliders.length - 1;
+    active = sliders.length - 1;
   }
-  sliders[currentSlide].className = 'slider__item slider__item_active';
+  sliders[active].className = 'slider__item slider__item_active';
 };
